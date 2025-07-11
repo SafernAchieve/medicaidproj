@@ -124,6 +124,40 @@ app.get('/api/people', async (req, res) => {
 
 
 
+async function getNetsmartToken() {
+    const data = JSON.stringify({
+        login_name: "netsmartapi",
+        password: "Hul19710"
+    });
+
+    const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://myevolvabh.netsmartcloud.com/api/session/authenticate',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Cookie': 'AWSALB=waj0HmbyZh02bs/HuCD7YB4YIfG4k7PL4VxfZDbdcI7vb37Ip3pNmATSqEL3CuUhJVPsl4GfQPw7QYhU0z5AHBxbA1jzDXOpOosmoeAYA9+5SzQnMUy+DAMVW24R; AWSALBCORS=waj0HmbyZh02bs/HuCD7YB4YIfG4k7PL4VxfZDbdcI7vb37Ip3pNmATSqEL3CuUhJVPsl4GfQPw7QYhU0z5AHBxbA1jzDXOpOosmoeAYA9+5SzQnMUy+DAMVW24R'
+        },
+        data: data
+    };
+
+    try {
+        const response = await axios.request(config);
+        return response.data;  // Or return the specific token property if you know what it is
+    } catch (error) {
+        console.error('Error fetching Netsmart token:', error.message);
+        throw error;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 // Error handling middleware
